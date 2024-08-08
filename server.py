@@ -26,7 +26,12 @@ validator = Auth0JWTBearerTokenValidator(
 require_auth.register_token_validator(validator)
 
 APP = Flask(__name__)
-CORS(APP, resources={r"/*": {"origins": ["http://localhost:3000", "https://crowdsource.greentree.com"]}})
+CORS(APP, resources={r"/*": {
+    "origins": [
+        r"https://prod2-\d+\.(southeastasia|eastasia)\.logic\.azure\.com", 
+        "http://localhost:3000"
+    ]
+}})
 
 @APP.route("/api/public")
 def public():
